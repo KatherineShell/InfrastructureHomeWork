@@ -30,13 +30,14 @@ app.get('/', function (request, response) {
 
             builds.forEach(element => {
                 let style = element.status === 0 ? `"color: #28a745;"` : `"color: #dc3545;"`;
+                let click = ` onclick="window.location.pathname='/build/` + element.id + `'" `;
 
                 arrayHtml += `<tr>
-                  <th onclick="window.location.pathname='/build/`+ element.id + `'" scope="row">` + element.hash + `</th>
-                  <td>`+ element.start + `</td>
-                  <td>`+ element.end + `</td>
-                  <td style=`+ style + ` >` + element.status + `</td>
-                  <td>`+ element.command + `</td>
+                  <th `+ click + ` >` + element.hash + `</th>
+                  <td `+ click + ` >` + element.start + `</td>
+                  <td `+ click + ` >` + element.end + `</td>
+                  <td `+ click + ` style=` + style + ` >` + element.status + `</td>
+                  <td `+ click + ` >` + element.command + `</td>
               </tr>`;
             });
 

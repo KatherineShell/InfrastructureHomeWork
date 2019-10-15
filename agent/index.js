@@ -29,7 +29,7 @@ app.post('/build', function (request, response) {
 
     let cloneCallback = () => {
         let checkoutCallback = () => {
-            let shellCallback = () => {
+            let shellCallback = (stderr, stdout) => {
                 endTask({
                     status: 0,
                     stderr: stderr,
@@ -132,7 +132,7 @@ const process = (response, body, cb, command, options, params, port) => {
     childProcess.on('close', function (code) {
         console.log('process exited with code ' + code);
         if (code == 0) {
-            cb();
+            cb(stderr, stdout);
         }
         else {
             endTask({
